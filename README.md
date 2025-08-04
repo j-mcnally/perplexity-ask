@@ -49,6 +49,25 @@ cd modelcontextprotocol/perplexity-ask && npm install
 2. Follow the account setup instructions and generate your API key from the developer dashboard.
 3. Set the API key in your environment as `PERPLEXITY_API_KEY`.
 
+### Environment Variables
+
+The following environment variables can be configured:
+
+- `PERPLEXITY_API_KEY` (required): Your Perplexity API key
+- `PERPLEXITY_API_URL` (optional): Custom API endpoint URL (defaults to `https://api.perplexity.ai/chat/completions`)
+- `PERPLEXITY_MODEL` (optional): Default model for general use (defaults to `sonar-pro`)
+- `PERPLEXITY_ASK_MODEL` (optional): Model for the perplexity_ask tool (defaults to `sonar-pro`)
+- `PERPLEXITY_RESEARCH_MODEL` (optional): Model for the perplexity_research tool (defaults to `sonar-deep-research`)
+- `PERPLEXITY_REASON_MODEL` (optional): Model for the perplexity_reason tool (defaults to `sonar-reasoning-pro`)
+
+#### Using with OpenRouter or Other Third-Party Providers
+
+To use Perplexity models via OpenRouter or other compatible providers:
+
+1. Set `PERPLEXITY_API_URL` to your provider's endpoint (e.g., `https://openrouter.ai/api/v1/chat/completions`)
+2. Use your provider's API key as `PERPLEXITY_API_KEY`
+3. Configure model names according to your provider's naming convention
+
 ### Step 3: Configure Claude Desktop
 
 1. Download Claude desktop [here](https://claude.ai/download). 
@@ -69,7 +88,11 @@ cd modelcontextprotocol/perplexity-ask && npm install
         "mcp/perplexity-ask"
       ],
       "env": {
-        "PERPLEXITY_API_KEY": "YOUR_API_KEY_HERE"
+        "PERPLEXITY_API_KEY": "YOUR_API_KEY_HERE",
+        "PERPLEXITY_API_URL": "https://api.perplexity.ai/chat/completions",
+        "PERPLEXITY_ASK_MODEL": "sonar-pro",
+        "PERPLEXITY_RESEARCH_MODEL": "sonar-deep-research",
+        "PERPLEXITY_REASON_MODEL": "sonar-reasoning-pro"
       }
     }
   }
@@ -88,7 +111,11 @@ cd modelcontextprotocol/perplexity-ask && npm install
         "server-perplexity-ask"
       ],
       "env": {
-        "PERPLEXITY_API_KEY": "YOUR_API_KEY_HERE"
+        "PERPLEXITY_API_KEY": "YOUR_API_KEY_HERE",
+        "PERPLEXITY_API_URL": "https://api.perplexity.ai/chat/completions",
+        "PERPLEXITY_ASK_MODEL": "sonar-pro",
+        "PERPLEXITY_RESEARCH_MODEL": "sonar-deep-research",
+        "PERPLEXITY_REASON_MODEL": "sonar-reasoning-pro"
       }
     }
   }
