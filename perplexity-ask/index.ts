@@ -135,10 +135,10 @@ if (!PERPLEXITY_API_KEY) {
  */
 async function performChatCompletion(
   messages: Array<{ role: string; content: string }>,
-  model: string = "sonar-pro"
+  model: string = process.env.PERPLEXITY_MODEL || "sonar-pro"
 ): Promise<string> {
   // Construct the API endpoint URL and request body
-  const url = new URL("https://api.perplexity.ai/chat/completions");
+  const url = new URL(process.env.PERPLEXITY_API_URL || "https://api.perplexity.ai/chat/completions");
   const body = {
     model: model, // Model identifier passed as parameter
     messages: messages,
@@ -237,7 +237,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         // Invoke the chat completion function with the provided messages
         const messages = args.messages;
-        const result = await performChatCompletion(messages, "sonar-pro");
+        const result = await performChatCompletion(messages, process.env.PERPLEXITY_ASK_MODEL || "sonar-pro");
         return {
           content: [{ type: "text", text: result }],
           isError: false,
@@ -249,7 +249,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         // Invoke the chat completion function with the provided messages using the deep research model
         const messages = args.messages;
-        const result = await performChatCompletion(messages, "sonar-deep-research");
+        const result = await performChatCompletion(messages, process.env.PERPLEXITY_RESEARCH_MODEL || "sonar-deep-research");
         return {
           content: [{ type: "text", text: result }],
           isError: false,
@@ -261,7 +261,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         // Invoke the chat completion function with the provided messages using the reasoning model
         const messages = args.messages;
-        const result = await performChatCompletion(messages, "sonar-reasoning-pro");
+        const result = await performChatCompletion(messages, process.env.PERPLEXITY_REASON_MODEL || "sonar-reasoning-pro");
         return {
           content: [{ type: "text", text: result }],
           isError: false,
